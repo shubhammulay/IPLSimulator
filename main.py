@@ -3,6 +3,7 @@ import accessJSON
 import copy
 import sys 
 import json
+import time
 
 
 #NEXT UPDATE -
@@ -85,9 +86,12 @@ innings1Log = []
 innings2Log = []
 
 tossMsg = None
+TOSS_TIME = 20
+BALL_TIME = random.choice([6, 10, 15, 8, 5, 4])
 
 def doToss(pace, spin, outfield, secondInnDew, pitchDetoriate, typeOfPitch, team1, team2):
     global tossMsg
+    time.sleep(TOSS_TIME)
     battingLikely =  0.45
     if(secondInnDew):
           battingLikely = battingLikely - random.uniform(0.09, 0.2)
@@ -407,6 +411,7 @@ def innings1(batting, bowling, battingName, bowlingName, pace, spin, outfield, d
             nonlocal batterTracker, bowlerTracker, runs, balls, ballLog, wickets, onStrike
             global innings1Log
 
+            time.sleep(BALL_TIME)
             # print(den)
             if(wideRate > random.uniform(0,1)): #add batter tracking & bowler tracking logs, read ln 267 & ln 255
              runs += 1
@@ -2244,7 +2249,7 @@ def game(manual=True, sentTeamOne=None, sentTeamTwo=None, switch="group"):
         team_two_inp = sentTeamTwo
 
     # pitchTypeInput = input("Enter type of pitch (green, dusty, or dead) ")
-    pitchTypeInput = "dusty"
+    pitchTypeInput = random.choice(["green","dusty", "dead"])
     # stdoutOrigin=sys.stdout 
     # sys.stdout = open(f"scores/{team_one_inp}v{team_two_inp}_{switch}.txt", "w")
 
